@@ -11,15 +11,11 @@ CREATE TABLE IF NOT EXISTS `homer_hosts` (
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `host_2` (`host`),
   KEY `host` (`host`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 
 --
 -- Daten f Tabelle `homer_hosts`
 --
-
-INSERT INTO `homer_hosts` VALUES(1, '192.168.0.30', 'proxy01', 1);
-INSERT INTO `homer_hosts` VALUES(2, '192.168.0.4', 'acme-234', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -32,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `homer_logon` (
   `password` varchar(50) NOT NULL DEFAULT '',
   `userlevel` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`userid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 
 --
 -- Daten f Tabelle `homer_logon`
@@ -60,14 +56,13 @@ CREATE TABLE IF NOT EXISTS `homer_nodes` (
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `host_2` (`host`),
   KEY `host` (`host`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 
 --
 -- Daten f Tabelle `homer_nodes`
 --
 
-INSERT INTO `homer_nodes` VALUES(1, '127.0.0.1', 'db1', '3306','root', '', 'sip_capture', 'node1', 1);
-INSERT INTO `homer_nodes` VALUES(2, '10.0.136.234', 'db2', '3306', 'root', '', 'sip_capture', 'node2',  1);
+INSERT INTO `homer_nodes` VALUES(1, 'localhost', 'db1', '3306','root', '', 'sip_capture', 'homer', 1);
 
 --
 -- Table for search logging 
@@ -81,5 +76,5 @@ CREATE TABLE IF NOT EXISTS `homer_searchlog` (
   PRIMARY KEY (`id`),
   KEY `useremail` (`useremail`),
   KEY `datekey` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 

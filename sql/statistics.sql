@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `alarm_data` (
   PRIMARY KEY (`id`),
   KEY `to_date` (`create_date`),
   KEY `method` (`type`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 
 -- --------------------------------------------------------
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `alarm_data_mem` (
   UNIQUE KEY `type` (`type`,`source_ip`),
   KEY `to_date` (`create_date`),
   KEY `method` (`type`)
-) ENGINE=MEMORY DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 
 -- --------------------------------------------------------
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `stats_data` (
   KEY `from_date` (`from_date`),
   KEY `to_date` (`to_date`),
   KEY `method` (`type`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 
 -- --------------------------------------------------------
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `stats_ip` (
   KEY `from_date` (`from_date`),
   KEY `to_date` (`to_date`),
   KEY `method` (`method`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 
 -- --------------------------------------------------------
 
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `stats_ip_mem` (
   `total` int(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `datemethod` (`method`,`source_ip`)
-) ENGINE=MEMORY DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MEMORY DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `stats_method` (
   KEY `to_date` (`to_date`),
   KEY `method` (`method`),
   KEY `completed` (`cseq`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `stats_method_mem` (
   KEY `from_date` (`create_date`),
   KEY `method` (`method`),
   KEY `completed` (`cseq`)
-) ENGINE=MEMORY DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MEMORY DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `stats_useragent` (
   KEY `useragent` (`useragent`),
   KEY `method` (`method`),
   KEY `total` (`total`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
 
 -- --------------------------------------------------------
 
@@ -172,4 +172,4 @@ CREATE TABLE IF NOT EXISTS `stats_useragent_mem` (
   `total` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `useragent` (`useragent`,`method`)
-) ENGINE=MEMORY DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MEMORY DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
