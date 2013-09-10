@@ -68,7 +68,7 @@ CREATE TABLE `sip_custom_header` (
     `date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
     `header_name` varchar(256) NOT NULL,
     `header_value` varchar(256) NOT NULL,
-    FOREIGN KEY (`capture_id`) references sip_capture(`id`) on DELETE CASCADE,
+    FOREIGN KEY (`capture_id`) references sip_capture(`callid`) on DELETE CASCADE,
     PRIMARY KEY (`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8
 PARTITION BY RANGE ( UNIX_TIMESTAMP(`date`) ) (
