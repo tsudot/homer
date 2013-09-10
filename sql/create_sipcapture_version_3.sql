@@ -61,8 +61,8 @@ CREATE TABLE IF NOT EXISTS `sip_capture` (
   INDEX (callid_aleg),
   INDEX (source_ip),
   INDEX (destination_ip),
-  INDEX (originator_ip)
-  INDEX (date),
+  INDEX (originator_ip),
+  INDEX (date)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8
 PARTITION BY RANGE ( UNIX_TIMESTAMP(`date`) ) (
 PARTITION pmax VALUES LESS THAN (MAXVALUE)
