@@ -6,7 +6,7 @@
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sip_capture` (
+CREATE TABLE IF NOT EXISTS `sip_capture` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `micro_ts` bigint(18) NOT NULL DEFAULT '0',
@@ -56,21 +56,24 @@ CREATE TABLE `sip_capture` (
   KEY `auth_user` (`auth_user`),
   KEY `callid_aleg` (`callid_aleg`),
   KEY `date` (`date`),
-  KEY `callid` (`callid`)
+  KEY `callid` (`callid`),
+  INDEX (callid),
+  INDEX (callid_aleg),
+  INDEX (source_ip),
+  INDEX (destination_ip),
+  INDEX (originator_ip)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8
 PARTITION BY RANGE ( UNIX_TIMESTAMP(`date`) ) (
 PARTITION pmax VALUES LESS THAN (MAXVALUE)
 );
 
-CREATE TABLE `sip_custom_header` (
+CREATE TABLE IF NOT EXISTS `sip_custom_header` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-    `capture_id` bigint(20) unsigned NOT NULL,
+    `callid` varchar(100) NOT NULL,
     `date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
     `header_name` varchar(256) NOT NULL,
     `header_value` varchar(256) NOT NULL,
-    FOREIGN KEY (`capture_id`) references sip_capture(`callid`) on DELETE CASCADE,
-    PRIMARY KEY (`id`)
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8
-PARTITION BY RANGE ( UNIX_TIMESTAMP(`date`) ) (
-PARTITION pmax VALUES LESS THAN (MAXVALUE)
-);
+    FOREIGN KEY (`callid`) references sip_capture(`callid`) on DELETE CASCADE,
+    PRIMARY KEY (`id`),
+    INDEX (callid)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
